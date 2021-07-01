@@ -15,6 +15,20 @@ class RadioAdvancedTest {
         radioAdvanced.setName(expected);
         assertEquals(expected, radioAdvanced.getName());
     }
+    @Test
+    public void showsNumberRadioStationsDefaultRadioStations() {
+        RadioAdvanced radioAdvanced = new RadioAdvanced();
+
+        assertEquals(10, radioAdvanced.getMaxRadioStationNum());
+    }
+
+    @Test
+    public void showsNumberRadioStationsSetByUser() {
+        RadioAdvanced radioAdvanced = new RadioAdvanced(15);
+
+        assertEquals(14, radioAdvanced.getMaxRadioStationNum());
+
+    }
 
     @Test
     public void radioStationIncreaseOne() {
@@ -32,7 +46,7 @@ class RadioAdvancedTest {
     public void switchingFromTheMaximumRadioStationToTheNextOne() {
         RadioAdvanced radioAdvanced = new RadioAdvanced();
 
-        radioAdvanced.setCurrentRadioStationNum(9);
+        radioAdvanced.setCurrentRadioStationNum(10);
         radioAdvanced.increaseCurrentStationNumber();
         assertEquals(0, radioAdvanced.getCurrentRadioStationNum());
 
@@ -42,22 +56,23 @@ class RadioAdvancedTest {
     public void radioStationDecreaseByOne() {
         RadioAdvanced radioAdvanced = new RadioAdvanced();
 
-        radioAdvanced.setCurrentRadioStationNum(9);
+        radioAdvanced.setCurrentRadioStationNum(10);
         radioAdvanced.reducingCurrentStationNumber();
-        assertEquals(8, radioAdvanced.getCurrentRadioStationNum());
+        assertEquals(9, radioAdvanced.getCurrentRadioStationNum());
 
         radioAdvanced.setCurrentRadioStationNum(5);
         radioAdvanced.reducingCurrentStationNumber();
         assertEquals(4, radioAdvanced.getCurrentRadioStationNum());
 
     }
+
     @Test
     public void switchingFromTheMinimumRadioStationToThePreviousOne() {
         RadioAdvanced radioAdvanced = new RadioAdvanced();
 
         radioAdvanced.setCurrentRadioStationNum(0);
         radioAdvanced.reducingCurrentStationNumber();
-        assertEquals(9, radioAdvanced.getCurrentRadioStationNum());
+        assertEquals(10, radioAdvanced.getCurrentRadioStationNum());
     }
 
     @Test
@@ -68,21 +83,21 @@ class RadioAdvancedTest {
         radioAdvanced.increaseVolume();
         assertEquals(1, radioAdvanced.getSoundVolume());
 
-        radioAdvanced.setSoundVolume(5);
+        radioAdvanced.setSoundVolume(50);
         radioAdvanced.increaseVolume();
-        assertEquals(6, radioAdvanced.getSoundVolume());
+        assertEquals(51, radioAdvanced.getSoundVolume());
     }
 
     @Test
     public void increaseTheVolumeByOneAtMaximumSound() {
         RadioAdvanced radioAdvanced = new RadioAdvanced();
 
-        radioAdvanced.setSoundVolume(10);
+        radioAdvanced.setSoundVolume(100);
         radioAdvanced.increaseVolume();
-        assertEquals(10, radioAdvanced.getSoundVolume());
+        assertEquals(100, radioAdvanced.getSoundVolume());
 
         radioAdvanced.increaseVolume();
-        assertEquals(10, radioAdvanced.getSoundVolume());
+        assertEquals(100, radioAdvanced.getSoundVolume());
 
     }
 
@@ -90,19 +105,20 @@ class RadioAdvancedTest {
     public void volumeDecreaseByOne() {
         RadioAdvanced radioAdvanced = new RadioAdvanced();
 
-        radioAdvanced.setSoundVolume(10);
+        radioAdvanced.setSoundVolume(100);
         radioAdvanced.reducingVolume();
-        assertEquals(9, radioAdvanced.getSoundVolume());
+        assertEquals(99, radioAdvanced.getSoundVolume());
 
-        radioAdvanced.setSoundVolume(5);
+        radioAdvanced.setSoundVolume(50);
         radioAdvanced.reducingVolume();
-        assertEquals(4, radioAdvanced.getSoundVolume());
+        assertEquals(49, radioAdvanced.getSoundVolume());
     }
+
     @Test
     public void decreaseTheSoundByOneAtTheMinimumVolume() {
         RadioAdvanced radioAdvanced = new RadioAdvanced();
 
-        radioAdvanced.setSoundVolume(1);
+        radioAdvanced.setSoundVolume(0);
         radioAdvanced.reducingVolume();
         assertEquals(0, radioAdvanced.getSoundVolume());
 
@@ -126,10 +142,10 @@ class RadioAdvancedTest {
     public void checksInvalidRadioStationNumbersForInput() {
         RadioAdvanced radioAdvanced = new RadioAdvanced();
 
-        radioAdvanced.setCurrentRadioStationNum(-10);
+        radioAdvanced.setCurrentRadioStationNum(-11);
         assertEquals(0, radioAdvanced.getCurrentRadioStationNum());
 
-        radioAdvanced.setCurrentRadioStationNum(10);
+        radioAdvanced.setCurrentRadioStationNum(11);
         assertEquals(0, radioAdvanced.getCurrentRadioStationNum());
     }
 

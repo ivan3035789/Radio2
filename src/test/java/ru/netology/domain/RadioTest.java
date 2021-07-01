@@ -10,7 +10,7 @@ class RadioTest {
     public void changeStation() {
         Radio radio = new Radio();
         assertNull(radio.name);
-        assertEquals(9, radio.maxRadioStationNum);
+        assertEquals(10, radio.maxRadioStationNum);
         assertEquals(0, radio.minRadioStationNum);
         assertEquals(0, radio.currentRadioStationNum);
         assertFalse(radio.on);
@@ -20,7 +20,7 @@ class RadioTest {
     public void changeVolume() {
         Radio radio = new Radio();
         assertNull(radio.name);
-        assertEquals(10, radio.maximumVolume);
+        assertEquals(100, radio.maximumVolume);
         assertEquals(0, radio.minimumVolume);
         assertEquals(0, radio.radioStationNum);
         assertFalse(radio.on);
